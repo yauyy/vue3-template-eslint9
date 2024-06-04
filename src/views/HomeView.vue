@@ -1,14 +1,11 @@
 <script setup lang="ts">
-import TheWelcome from '../components/TheWelcome.vue';
-
-const a = 1;
-if (a == 1) {
-  console.log('a is 1');
-}
+const count = ref(0);
 </script>
 
 <template>
-  <main>
-    <TheWelcome />
-  </main>
+  <div>
+    <h1 @click="count++">
+      Home View
+    </h1>
+  </div>
 </template>

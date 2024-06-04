@@ -9,7 +9,7 @@ export default antfu({
   },
   files: ['**/*.{ts,js,vue}'],
   rules: {
-    'no-console': 'off',
+    'no-console': 'warn',
     'semi': 'error',
     'style/semi': 'off',
   },
