@@ -7,8 +7,26 @@ vue3 项目模板
 - vite
 - vue-router
 - pinia
-- eslint / eslint-plugin-vue
+- eslint
+  - eslint-plugin-vue
+  - eslint-plugin-prettier
+  - eslint-config-prettier
+- prettier
+  - prettier-stylelint
+- stylelint
+  - postcss-html
+  - stylelint-config-recommended-vue
+  - stylelint-config-standard-scss
+- lint-staged
 - unplugin-auto-import
+
+### eslint-config-prettier 9.1.0
+
+> `eslint-config-prettier` 是一个 ESLint 配置，它关闭所有可能与 Prettier 冲突的 ESLint 规则。这样你就可以同时使用 ESLint 和 Prettier，而不会出现冲突
+
+### eslint-plugin-prettier 5.1.3
+
+> 配置 `eslint-plugin-prettier` 时，你的代码将会被 Prettier 格式化，然后 Prettier 的输出将会被 ESLint 检查。如果 Prettier 格式化后的代码与 ESLint 的规则不一致，ESLint 将会报告一个错误。
 
 ### eslint-plugin-vue 9.26.0
 
@@ -19,7 +37,7 @@ import pluginVue from 'eslint-plugin-vue';
 export default [
   ...pluginVue.configs['flat/recommended'].map((config) => ({
     ...config,
-    files: ['src/**/*.{vue,ts}'] // 指定检查文件
+    files: ['src/**/*.{vue,ts}'], // 指定检查文件
   })),
   {
     rules: {
@@ -84,10 +102,7 @@ export default defineConfig({
       // Array of strings of regexes that contains imports meant to be ignored during
       // the declaration file generation. You may find this useful when you need to provide
       // a custom signature for a function.
-      ignoreDts: [
-        'ignoredFunction',
-        /^ignore_/,
-      ],
+      ignoreDts: ['ignoredFunction', /^ignore_/],
 
       // Auto import inside Vue template
       // see https://github.com/unjs/unimport/pull/15 and https://github.com/unjs/unimport/pull/72
@@ -107,11 +122,12 @@ export default defineConfig({
       eslintrc: {
         enabled: false, // Default `false`
         // provide path ending with `.mjs` or `.cjs` to generate the file with the respective format
-        filepath: fileURLToPath(new URL('./.eslintrc-auto-import.json', import.meta.url)), // Default `./.eslintrc-auto-import.json`
+        filepath: fileURLToPath(
+          new URL('./.eslintrc-auto-import.json', import.meta.url),
+        ), // Default `./.eslintrc-auto-import.json`
         globalsPropValue: true, // Default `true`, (true | false | 'readonly' | 'readable' | 'writable' | 'writeable')
       },
     }),
-
   ],
 });
 ```
