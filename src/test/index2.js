@@ -2,7 +2,6 @@ const a = 1;
 
 export const indexMap = [1, 2].reduce((memo, item, index) => {
   memo[item] = index;
-  return memo;
 }, {});
 
 const users = [

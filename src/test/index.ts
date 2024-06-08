@@ -1,4 +1,4 @@
 export const a = 1;
-export const indexMap = [].reduce(function (memo, item, index) {
-  memo[item] = index;
+export const indexMap = [1, 2].reduce(function (memo, item, index) {
+  memo = index;
 }, {});

@@ -1,18 +1,18 @@
-import js from '@eslint/js';
+import pluginJs from '@eslint/js';
 import eslintConfigPrettier from 'eslint-config-prettier';
+import importX from 'eslint-plugin-import-x';
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 import pluginVue from 'eslint-plugin-vue';
 import fs from 'node:fs';
 import { URL, fileURLToPath } from 'node:url';
-import tseslint from 'typescript-eslint';
+import pluginTs from 'typescript-eslint';
 
 const autoImportPath = fileURLToPath(
   new URL('./.eslintrc-auto-import.json', import.meta.url),
 );
 const eslintrcAutoImport = JSON.parse(fs.readFileSync(autoImportPath, 'utf8'));
-
-const tsEslint = tseslint
-  .config(...tseslint.configs.recommended)
+const tsEslint = pluginTs
+  .config(...pluginTs.configs.recommended)
   .map((config) => ({
     ...config,
     languageOptions: {
@@ -28,9 +28,14 @@ export default [
   {
     ignores: ['node_modules/', 'dist/', 'public/', 'src/assets/'],
   },
-  js.configs.recommended,
   ...tsEslint,
   ...vueEslint,
+  pluginJs.configs.recommended,
+  {
+    plugins: {
+      'import-x': importX,
+    },
+  },
   {
     ...eslintPluginPrettierRecommended,
     rules: {
@@ -39,6 +44,7 @@ export default [
     },
   },
   {
+    files: ['src/**/*.{js,ts,jsx,tsx,vue}'],
     rules: {
       'vue/singleline-html-element-content-newline': 'off',
       'vue/multi-word-component-names': [
@@ -48,6 +54,25 @@ export default [
         },
       ],
       'prettier/prettier': ['error', { endOfLine: 'auto' }], // 自动选择结尾换行
+
+      'array-callback-return': 'error',
+      'sort-imports': 'off',
+
+      'import-x/order': [
+        'error',
+        {
+          groups: [
+            'internal',
+            'builtin',
+            'type',
+            'parent',
+            'object',
+            'external',
+            'sibling',
+            'index',
+          ],
+        },
+      ],
     },
     languageOptions: {
       ...eslintrcAutoImport,
