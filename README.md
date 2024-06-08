@@ -7,8 +7,28 @@ vue3 项目模板
 - vite
 - vue-router
 - pinia
-- eslint / antfu/eslint-config
+- eslint / eslint-plugin-vue
 - unplugin-auto-import
+
+### eslint-plugin-vue 9.26.0
+
+```js
+// eslint.config.js
+import pluginVue from 'eslint-plugin-vue';
+
+export default [
+  ...pluginVue.configs['flat/recommended'].map((config) => ({
+    ...config,
+    files: ['src/**/*.{vue,ts}'] // 指定检查文件
+  })),
+  {
+    rules: {
+      // override/add rules settings here, such as:
+      // 'vue/no-unused-vars': 'error'
+    },
+  },
+];
+```
 
 ### unplugin-auto-import配置
 

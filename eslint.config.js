@@ -1,16 +1,21 @@
-import antfu from '@antfu/eslint-config';
+import pluginVue from 'eslint-plugin-vue';
 
-export default antfu({
-  vue: true,
-  typescript: true,
-  formatters: {
-    css: true,
-    html: true,
+export default [
+  ...pluginVue.configs['flat/recommended'].map((config) => ({
+    ...config,
+    files: ['src/**/*.{vue,ts}'], // 指定检查的文件
+    rules: {
+      ...config.rules,
+      'vue/multi-word-component-names': ['error', {
+        'ignores': ['index'] // 忽略 index.vue表示页面
+      }]
+    },
+  })),
+  {
+    // rules: {
+    //   'vue/multi-word-component-names': ['error', {
+    //     'ignores': ['index'] // 忽略 index.vue表示页面
+    //   }]
+    // },
   },
-  files: ['**/*.{ts,js,vue}'],
-  rules: {
-    'no-console': 'warn',
-    'semi': 'error',
-    'style/semi': 'off',
-  },
-});
+];

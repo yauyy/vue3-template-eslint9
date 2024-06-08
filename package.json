@@ -18,14 +18,13 @@
     "vue-router": "^4.3.2"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^2.19.2",
     "@tsconfig/node20": "^20.1.4",
     "@types/node": "^20.13.0",
-    "@unocss/eslint-plugin": "^0.60.4",
     "@vitejs/plugin-vue": "^5.0.5",
     "@vue/tsconfig": "^0.5.1",
     "eslint": "^9.4.0",
-    "eslint-plugin-format": "^0.1.1",
+    "eslint-plugin-vue": "^9.26.0",
+    "lint-staged": "^15.2.5",
     "npm-run-all2": "^6.2.0",
     "typescript": "~5.4.5",
     "unplugin-auto-import": "^0.17.6",
