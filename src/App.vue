@@ -24,7 +24,6 @@ r.value += 1;
 
 const nums = ref(1);
 nums.value += 1;
-
 console.log(c.c);
 </script>
 
@@ -40,16 +39,3 @@ console.log(c.c);
 
   <RouterView />
 </template>
-
-<style scoped lang="scss">
-a {
-  grid-template-areas:
-    'a a'
-    'b b b';
-  colr: hsl(20deg 10% 30% / 5%);
-}
-
-a {
-  --Foo: 1rem;
-}
-</style>

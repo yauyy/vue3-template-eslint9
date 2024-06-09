@@ -11,12 +11,14 @@ vue3 项目模板
   - eslint-plugin-vue
   - eslint-plugin-prettier
   - eslint-config-prettier
+  - ~~vite-plugin-eslint
 - prettier
   - prettier-stylelint
 - stylelint
   - postcss-html
   - stylelint-config-recommended-vue
   - stylelint-config-standard-scss
+- husky
 - lint-staged
 - unplugin-auto-import
 

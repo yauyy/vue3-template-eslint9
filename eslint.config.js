@@ -7,26 +7,21 @@ import pluginTs from 'typescript-eslint';
 import fs from 'node:fs';
 import { URL, fileURLToPath } from 'node:url';
 
-const autoImportPath = fileURLToPath(
-  new URL('./.eslintrc-auto-import.json', import.meta.url),
-);
+const autoImportPath = fileURLToPath(new URL('./.eslintrc-auto-import.json', import.meta.url));
 const eslintrcAutoImport = JSON.parse(fs.readFileSync(autoImportPath, 'utf8'));
-const tsEslint = pluginTs
-  .config(...pluginTs.configs.recommended)
-  .map((config) => ({
-    ...config,
-    languageOptions: {
-      ...config.languageOptions,
-      parserOptions: {
-        parser: '@typescript-eslint/parser',
-      },
+const tsEslint = pluginTs.config(...pluginTs.configs.recommended).map((config) => ({
+  ...config,
+  languageOptions: {
+    ...config.languageOptions,
+    parserOptions: {
+      parser: '@typescript-eslint/parser',
     },
-  }));
+  },
+}));
 const vueEslint = pluginVue.configs['flat/recommended'];
 
 export default [
   {
-    ignores: ['node_modules/', 'dist/', 'public/', 'src/assets/'],
     plugins: {
       'import-x': pluginImportX,
     },
@@ -59,16 +54,7 @@ export default [
       'import-x/order': [
         'error',
         {
-          groups: [
-            'external',
-            'builtin',
-            'internal',
-            'type',
-            'parent',
-            'object',
-            'sibling',
-            'index',
-          ],
+          groups: ['external', 'builtin', 'internal', 'type', 'parent', 'object', 'sibling', 'index'],
         },
       ],
       'import-x/no-cycle': 'error', // 禁止循环引用 暂不支持
@@ -77,5 +63,8 @@ export default [
     languageOptions: {
       ...eslintrcAutoImport,
     },
+  },
+  {
+    ignores: ['node_modules/', 'dist/', 'public/', 'src/assets/', 'tests/'],
   },
 ];
