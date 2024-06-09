@@ -1,11 +1,11 @@
 import pluginJs from '@eslint/js';
 import eslintConfigPrettier from 'eslint-config-prettier';
-import importX from 'eslint-plugin-import-x';
+import pluginImportX from 'eslint-plugin-import-x';
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 import pluginVue from 'eslint-plugin-vue';
+import pluginTs from 'typescript-eslint';
 import fs from 'node:fs';
 import { URL, fileURLToPath } from 'node:url';
-import pluginTs from 'typescript-eslint';
 
 const autoImportPath = fileURLToPath(
   new URL('./.eslintrc-auto-import.json', import.meta.url),
@@ -27,15 +27,13 @@ const vueEslint = pluginVue.configs['flat/recommended'];
 export default [
   {
     ignores: ['node_modules/', 'dist/', 'public/', 'src/assets/'],
+    plugins: {
+      'import-x': pluginImportX,
+    },
   },
   ...tsEslint,
   ...vueEslint,
   pluginJs.configs.recommended,
-  {
-    plugins: {
-      'import-x': importX,
-    },
-  },
   {
     ...eslintPluginPrettierRecommended,
     rules: {
@@ -62,17 +60,19 @@ export default [
         'error',
         {
           groups: [
-            'internal',
+            'external',
             'builtin',
+            'internal',
             'type',
             'parent',
             'object',
-            'external',
             'sibling',
             'index',
           ],
         },
       ],
+      'import-x/no-cycle': 'error', // 禁止循环引用 暂不支持
+      'import-x/no-self-import': 'error', // 禁止自引用 暂不支持
     },
     languageOptions: {
       ...eslintrcAutoImport,

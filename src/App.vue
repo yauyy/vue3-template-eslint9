@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { num } from './test/type';
-import { ref } from 'vue';
 import axios from 'axios';
+import { ref } from 'vue';
+import type { num } from './test/type';
 import { type Aab } from './type';
 import { b } from './index';
 // import zx from 'zx';
@@ -21,6 +21,9 @@ console.log('🚀 ~ d:', d, c?.d);
 
 const r = ref(0);
 r.value += 1;
+
+const nums = ref(1);
+nums.value += 1;
 
 console.log(c.c);
 </script>
