@@ -5,10 +5,7 @@ export default {
   overrides: [
     {
       files: ['src/**/*.vue'],
-      extends: [
-        'stylelint-config-standard-scss',
-        'stylelint-config-recommended-vue',
-      ],
+      extends: ['stylelint-config-standard-scss', 'stylelint-config-recommended-vue'],
       rules: {},
     },
   ],
