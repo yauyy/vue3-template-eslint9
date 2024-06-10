@@ -1,31 +1,4 @@
-<script setup lang="ts">
-import axios from 'axios';
-import { ref } from 'vue';
-import type { num } from './test/type';
-import { type Aab } from './type';
-import { b } from './index';
-// import zx from 'zx';
-
-console.log('🚀 ~ file: App.vue ~ line 3 ~ ba', b);
-
-console.log(axios, 'axios');
-
-// console.log('🚀 ~ a:', a, zx);
-
-const c: Aab = {
-  c: 1,
-};
-
-const d: num = { a: 1 };
-console.log('🚀 ~ d:', d, c?.d);
-
-const r = ref(0);
-r.value += 1;
-
-const nums = ref(1);
-nums.value += 1;
-console.log(c.c);
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <header>

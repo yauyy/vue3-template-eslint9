@@ -46,6 +46,7 @@ export default [
           ignores: ['index'], // 忽略 index 命名，一般表示页面
         },
       ],
+      '@typescript-eslint/no-explicit-any': 'off', // 允许使用 any 类型
       'prettier/prettier': ['error', { endOfLine: 'auto' }], // 自动选择结尾换行
 
       'array-callback-return': 'error',

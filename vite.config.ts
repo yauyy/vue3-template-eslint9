@@ -3,7 +3,6 @@ import AutoImport from 'unplugin-auto-import/vite';
 import { defineConfig } from 'vite';
 import { URL, fileURLToPath } from 'node:url';
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     AutoImport({
@@ -13,20 +12,7 @@ export default defineConfig({
         /\.vue\?vue/, // .vue
         /\.md$/, // .md
       ],
-      imports: [
-        'vue',
-        'vue-router',
-        {
-          axios: [
-            ['default', 'axios'], // import { default as axios } from 'axios',
-          ],
-        },
-        {
-          from: 'vue-router',
-          imports: ['RouteLocationRaw'],
-          type: true,
-        },
-      ],
+      imports: ['vue', 'vue-router'],
       defaultExportByFilename: false,
       dts: fileURLToPath(new URL('./auto-imports.d.ts', import.meta.url)),
       ignoreDts: ['ignoredFunction', /^ignore_/],
@@ -38,6 +24,15 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
+    },
+  },
+  server: {
+    proxy: {
+      '/api': {
+        target: 'https://mock.apipost.net/mock/2b46e58c6864000',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ''),
+      },
     },
   },
 });
