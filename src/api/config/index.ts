@@ -11,6 +11,6 @@ const $axios = axios.create({
 
 $axios.interceptors.request.use(handleRequestSuccess, handleRequestError);
 
-$axios.interceptors.response.use(handleResopnseSuccess, handleResopnseError);
+$axios.interceptors.response.use(handleResopnseSuccess, (error) => handleResopnseError(error, $axios));
 
 export default $axios;
