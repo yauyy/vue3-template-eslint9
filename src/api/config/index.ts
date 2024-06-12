@@ -3,7 +3,7 @@ import { handleRequestError, handleRequestSuccess, handleResopnseError, handleRe
 const { VITE_BASE_URL: baseURL } = import.meta.env;
 console.log('🚀 ~ baseURL:', baseURL);
 
-const TIMEOUT = 1000;
+const TIMEOUT = 60 * 1000;
 const $axios = axios.create({
   baseURL,
   timeout: TIMEOUT,
@@ -11,6 +11,6 @@ const $axios = axios.create({
 
 $axios.interceptors.request.use(handleRequestSuccess, handleRequestError);
 
-$axios.interceptors.response.use(handleResopnseSuccess, (error) => handleResopnseError(error, $axios));
+$axios.interceptors.response.use(handleResopnseSuccess, handleResopnseError);
 
 export default $axios;

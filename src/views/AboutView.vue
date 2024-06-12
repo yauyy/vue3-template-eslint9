@@ -2,21 +2,29 @@
   <div class="about">
     <h1>This is an about page</h1>
     <button @click="getUser">获取GET</button>
-    <button @click="updateUser">POST</button>
+    <button @click="getToken">获取token</button>
+    <button @click="removeToken">移除token</button>
   </div>
 </template>
 
 <script setup lang="ts">
-import { getUserApi, updateUserApi } from '@/api/methods/user';
+import { getUserApi, refreshTokenApi } from '@/api/methods/user';
 
 async function getUser() {
-  const res = await getUserApi({ id: 123, apipost_id: '346e66b8388000' });
+  const res = await Promise.all([getUserApi(), getUserApi()]);
   console.log('🚀 ~ getUser ~ res:', res);
+  // const res = await getUserApi();
+  // console.log('🚀 ~ getUser ~ res:', res);
 }
 
-async function updateUser() {
-  const res = await updateUserApi({ id: 123, apipost_id: '34d873f4388031' });
+async function getToken() {
+  const res = await refreshTokenApi();
+  localStorage.setItem('token', res.Result);
   console.log('🚀 ~ updateUser ~ res:', res);
+}
+
+function removeToken() {
+  localStorage.removeItem('token');
 }
 </script>
 

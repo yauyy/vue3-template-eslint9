@@ -3,11 +3,11 @@ import { defineStore } from 'pinia';
 import { refreshTokenApi } from '@/api/methods/user';
 
 export const useLoginStore = defineStore('login', () => {
-  const token = ref(sessionStorage.getItem('token') || '');
+  const token = ref(localStorage.getItem('token') || '');
 
   const setToken = (newToken: string) => {
     token.value = newToken;
-    sessionStorage.setItem('token', newToken);
+    localStorage.setItem('token', newToken);
   };
 
   const getToken = () => {
@@ -18,13 +18,21 @@ export const useLoginStore = defineStore('login', () => {
     // Call login API
   };
 
+  let promise: Promise<any> | null = null;
   const refreshToken = async () => {
-    // Call refresh token API
-    const res = await refreshTokenApi();
-    if (res.Result) {
-      setToken(res.Result);
+    if (promise) {
+      return promise;
     }
-    return res;
+    promise = new Promise(async (resolve) => {
+      const res = await refreshTokenApi();
+      setToken(res.Result ?? '');
+      resolve(res.ErrCode == 0);
+    });
+    promise.finally(() => {
+      promise = null;
+    });
+
+    return promise;
   };
 
   return { token, setToken, getToken, login, refreshToken };

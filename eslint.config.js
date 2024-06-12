@@ -60,6 +60,7 @@ export default [
       ],
       'import-x/no-cycle': 'error', // 禁止循环引用 暂不支持
       'import-x/no-self-import': 'error', // 禁止自引用 暂不支持
+      'no-async-promise-executor': 'off',
     },
     languageOptions: {
       ...eslintrcAutoImport,
