@@ -11,10 +11,8 @@
 import { getUserApi, refreshTokenApi } from '@/api/methods/user';
 
 async function getUser() {
-  const res = await Promise.all([getUserApi(), getUserApi()]);
+  const res = await getUserApi();
   console.log('🚀 ~ getUser ~ res:', res);
-  // const res = await getUserApi();
-  // console.log('🚀 ~ getUser ~ res:', res);
 }
 
 async function getToken() {

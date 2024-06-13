@@ -14,10 +14,6 @@ export const useLoginStore = defineStore('login', () => {
     return token.value;
   };
 
-  const login = () => {
-    // Call login API
-  };
-
   let promise: Promise<any> | null = null;
   const refreshToken = async () => {
     if (promise) {
@@ -26,7 +22,7 @@ export const useLoginStore = defineStore('login', () => {
     promise = new Promise(async (resolve) => {
       const res = await refreshTokenApi();
       setToken(res.Result ?? '');
-      resolve(res.ErrCode == 0);
+      resolve(res.ErrCode === 0);
     });
     promise.finally(() => {
       promise = null;
@@ -35,5 +31,5 @@ export const useLoginStore = defineStore('login', () => {
     return promise;
   };
 
-  return { token, setToken, getToken, login, refreshToken };
+  return { token, setToken, getToken, refreshToken };
 });

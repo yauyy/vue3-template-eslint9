@@ -12,3 +12,5 @@ export const ERR_STATUS_MAP = new Map<number, string>([
   [504, '网络超时'],
   [505, 'http版本不支持该请求'],
 ]);
+
+export const ERROR_CODE = 6000;

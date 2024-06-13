@@ -1,5 +1,11 @@
-export interface Params<T> {
-  params?: T;
+import type { AxiosError } from 'axios';
+
+export type HttpMethod = 'get' | 'post' | 'put' | 'delete';
+export interface IAxiosError extends AxiosError {
+  config: {
+    headers: any;
+    __refresh?: boolean;
+  };
 }
 
 export interface ApiResult<T = any> {
