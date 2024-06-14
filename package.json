@@ -2,7 +2,8 @@
   "name": "vue3-template",
   "type": "module",
   "version": "1.0.0",
-  "private": true,
+  "private": false,
+  "description": "A Vue 3 project template, vue3 + vite + pinia + typescript + eslint + stylelint + prettier + husky + lint-staged",
   "scripts": {
     "dev": "vite",
     "build": "run-p type-check \"build-only {@}\" --",
