@@ -1,4 +1,5 @@
 {
   "upgrade": true,
-  "target": "minor"
+  // "target": "minor"
+  "target": "latest"
 }

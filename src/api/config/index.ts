@@ -24,6 +24,7 @@ function resonseResult(response: AxiosResponse): ApiResult {
 }
 
 function handleRequestSuccess(config: InternalAxiosRequestConfig) {
+  // 设置头部信息
   config.headers = Object.assign(config.headers, {
     authToken: localStorage.getItem('token'),
     // AppId: '123456',
@@ -51,6 +52,7 @@ async function handleResopnseError(error: IAxiosError) {
       alert('登录失效，请重新登录');
       return resonseResult(error.response!);
     }
+    // token 刷新成功，重新请求
     error.config!.headers.authToken = localStorage.getItem('token');
 
     const insRes = await $axios.request(error.config);
