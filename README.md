@@ -343,3 +343,7 @@ export default defineConfig({
 ```
 
 > 注意：第一次配置时开启配置*dts：true*, *eslintrc: { enabled: true }*, 然后运行 `pnpm run dev` 自动生成`auto-imports.d.ts`和`.eslintrc-auto-import.json`文件。启动后在设置*dts: './auto-import.d.ts'*和*eslintrc: { enabled: true, filepath: './.eslintrc-auto-import.json' }*。
+
+## ESLint配置检查器介绍
+
+> npx eslint --inspect-config
